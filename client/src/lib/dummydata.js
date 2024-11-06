@@ -115,6 +115,6 @@ export const singlePostData = {
 
 export const userData = {
   id: 1,
-  name: "John Doe",
-  img: "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  name: "Aditya",
+  img: "https://www.google.com/imgres?q=Man%20animated%20picture&imgurl=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2023%2F05%2F11%2F01%2F49%2Fman-7985318_960_720.png&imgrefurl=https%3A%2F%2Fpixabay.com%2Fillustrations%2Fman-character-portrait-handsome-7985318%2F&docid=zKq9ru3jkKcNQM&tbnid=Y68Ye_obYhDi3M&vet=12ahUKEwi-pLHi4ceJAxU5SGwGHSD3K0EQM3oFCIABEAA..i&w=480&h=720&hcb=2&ved=2ahUKEwi-pLHi4ceJAxU5SGwGHSD3K0EQM3oFCIABEAA",
 };
