@@ -28,8 +28,11 @@
       align-items: center;
       justify-content: center;
 
+    
+
       img {
         width: 50px;
+        
 
         @include md {
           width: 30px;
