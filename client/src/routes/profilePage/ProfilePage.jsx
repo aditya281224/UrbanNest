@@ -3,19 +3,33 @@ import List from "../../components/list/List";
 import Chat from "../../components/chat/Chat"
 import apiRequest from "../../lib/apiRequest";
 import { useNavigate } from "react-router-dom";
-function profilePage() {
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../../context/AuthContext";
+function ProfilePage() {
+
+  const {updateUser,currentUser}=useContext(AuthContext)
+
   const navigate=useNavigate()
+  useEffect(()=>{
+    if(!currentUser){
+      navigate("/login");
+    }
+  },[currentUser,navigate])
+
+
   const handleLogOut=async () => {
     try{
-      const res=apiRequest.post("/auth/logout");
+      await apiRequest.post("/auth/logout");
+      updateUser(null)
       navigate("/")
-      localStorage.removeItem("user")
+      
     }
     catch(err){
       console.log(err)
     }
   }
   return (
+    currentUser && 
     <div className="profilePage">
       <div className="details">
         <div className="wrapper">
@@ -26,13 +40,13 @@ function profilePage() {
           <div className="info">
             <span>
               Avatar:
-              <img src="" alt="img" />
+              <img src={currentUser.avatar || "noavatar.jpg"}  alt="img" />
             </span>
             <span> 
-              Username: <b>Aditya</b>
+              Username: <b>{currentUser.username}</b>
             </span>
             <span>
-              Email: <b>adityasharmavats281210@gmail.com</b>
+              Email: <b>{currentUser.email}</b>
             </span>
             <button onClick={handleLogOut}>Logout</button>
           </div>
@@ -55,4 +69,4 @@ function profilePage() {
     </div>
   );
 }
-export default profilePage;
+export default ProfilePage;
