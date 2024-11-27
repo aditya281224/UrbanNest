@@ -2,6 +2,7 @@ import express from "express"
 import authRoute from "./routes/auth.route.js"
 import testRoute from "./routes/test.route.js"
 import userRoute from "./routes/user.route.js"
+import postRoute from "./routes/user.route.js"
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
@@ -15,6 +16,11 @@ app.use(cookieParser());
 app.use("/api/auth", authRoute);
 app.use("/api/test",testRoute)
 app.use("/api/users",userRoute)
+app.post('/api/posts', (req, res) => {
+  const postData = req.body;
+  console.log("Received Post Data:", postData); // Debugging
+  res.status(201).json({ message: "Post created successfully", postData });
+});
 
 
 app.listen(8800,()=>{

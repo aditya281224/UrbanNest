@@ -3,10 +3,12 @@ import { createBrowserRouter,RouterProvider} from "react-router-dom";
 import ListPage from "./routes/listPage/listPage";
 import {Layout,RequireAuth} from "./routes/layout/layout";
 import SinglePage from "./routes/singlePage/singlePage"
+import NewPostPage from "./routes/newPostPage/newPostPage";
 import ProfilePage from"./routes/profilePage/ProfilePage"
 import Login from "./routes/login/login"
 import Register from "./routes/register/register";
 import ProfileUpdatePage from "./routes/profileUpdatePage/profileUpdatePage";
+import { listPageLoader, profilePageLoader, singlePageLoader } from "./lib/loaders";
 function App(){
 
   const router = createBrowserRouter([
@@ -19,11 +21,13 @@ function App(){
       },
       {
         path:"/list",
-        element:<ListPage/>
+        element:<ListPage/>,
+        loader:listPageLoader,
       },
       {
         path:"/:id",
-        element:<SinglePage/>
+        element:<SinglePage/>,
+        loader:singlePageLoader,
       },
       {
         path: "/login",
@@ -41,12 +45,18 @@ function App(){
       children:[
         {
           path:"/profile",
-          element:<ProfilePage/>
+          element:<ProfilePage/>,
+          loader:profilePageLoader
         },
         {
           path:"/profile/update",
-          element:<ProfileUpdatePage/>
+          element:<ProfileUpdatePage/>,
+          
         },
+        {
+          path:"/add",
+          element:<NewPostPage/>
+        }
       ]
     }
   ]);
