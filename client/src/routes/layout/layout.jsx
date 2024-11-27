@@ -10,7 +10,7 @@ export function Layout(){
         <Navbar/>
       </div>
       <div className="content">
-        <Outlet/>
+        <Outlet/> 
       </div>
     </div>
   )

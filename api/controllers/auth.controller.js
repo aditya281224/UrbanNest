@@ -32,7 +32,7 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   const { username, password } = req.body;
-
+  
   try{
 
     const user =await prisma.user.findUnique({
@@ -44,7 +44,8 @@ export const login = async (req, res) => {
     }
     const age=1000 * 60 * 60 * 24 * 7  
     const token=jwt.sign({
-     id:user.id 
+     id:user.id, 
+     
     },process.env.JWT_SECRET_KEY,{expiresIn:age})
 
     const isPasswordValid= await bcrypt.compare(password,user.password)
@@ -56,12 +57,12 @@ export const login = async (req, res) => {
       })
     }
 
-    
+    const {password:userPassword,...userInfo}=user
     res.cookie("token",token,{
       httpOnly:true,
       //secure:true
       maxAge:age
-    }).status(200).json({message:"Login Successfull"})
+    }).status(200).json(userInfo)
   }
   catch(err){
     console.log(err)
