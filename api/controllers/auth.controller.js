@@ -40,14 +40,8 @@ export const login = async (req, res) => {
     })
 
     if(!user){
-      res.status(401).json({message:"Invalid Credentials"})
+      return res.status(401).json({message:"Invalid Credentials"})
     }
-    const age=1000 * 60 * 60 * 24 * 7  
-    const token=jwt.sign({
-     id:user.id, 
-     
-    },process.env.JWT_SECRET_KEY,{expiresIn:age})
-
     const isPasswordValid= await bcrypt.compare(password,user.password)
 
     if(!isPasswordValid)
@@ -56,11 +50,19 @@ export const login = async (req, res) => {
         message:"Invalid Credentials"
       })
     }
+    const age=1000 * 60 * 60 * 24 * 7  
+    const token=jwt.sign({
+     id:user.id, 
+     isAdmin:false,
+     
+    },process.env.JWT_SECRET_KEY,{expiresIn:age})
+
+    
 
     const {password:userPassword,...userInfo}=user
     res.cookie("token",token,{
       httpOnly:true,
-      //secure:true
+      secure:process.env.NODE_ENV==="production",
       maxAge:age
     }).status(200).json(userInfo)
   }
