@@ -2,12 +2,13 @@ import "./listPage.scss";
 import Filter from "../../components/filter/Filter";
 import Card from "../../components/card/Card";
 import Map from "../../components/map/Map";
-import { useLoaderData } from "react-router-dom";
+import { Await,useLoaderData } from "react-router-dom";
 import { Suspense } from "react";
 function ListPage() {
   const data = useLoaderData();
 
   return (
+
     <div className="listPage">
       <div className="listContainer">
         <div className="wrapper">
@@ -32,7 +33,13 @@ function ListPage() {
             resolve={data.postResponse}
             errorElement={<p>Error loading posts!</p>}
           >
-            {(postResponse) => <Map items={postResponse.data} />}
+            {(postResponse) =>
+              postResponse.data.length === 0 ? (
+                <p>No map data available for the current filters.</p>
+              ) : (
+                <Map items={postResponse.data} />
+              )
+            }
           </Await>
         </Suspense>
       </div>

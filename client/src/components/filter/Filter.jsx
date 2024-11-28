@@ -1,5 +1,6 @@
 import React from "react";
 import './filter.scss'
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 const Filter = () => {
 
@@ -104,7 +105,8 @@ const Filter = () => {
             defaultValue={query.bedroom}
           />
         </div>
-        <button>
+        <button 
+        onClick={handleFilter}>
           <img src="/search.png" alt=""></img>
         </button>
       </div>

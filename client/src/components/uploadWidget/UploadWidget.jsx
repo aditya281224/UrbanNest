@@ -32,7 +32,7 @@ function CloudinaryUploadWidget({ uwConfig, setPublicId ,setState}) {
         (error, result) => {
           if (!error && result && result.event === "success") {
             console.log("Done! Here is the image info: ", result.info);
-            setAvatar(result.info.secure_url)
+            
             setState(prev=>[...prev,result.info.secure_url])
           }
         }

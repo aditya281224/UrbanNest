@@ -22,9 +22,6 @@ function Navbar(){
           <span>UrbanNest</span>
         </a>
         <a href="/">Home</a>
-        <a href="/">About</a>
-        <a href="/">Contact</a>
-        <a href="/">Agents</a>
       </div>
       <div className="right">
       {currentUser ? (
@@ -53,9 +50,7 @@ function Navbar(){
       </div>
       <div className={open ? "menu active" : "menu"}>
       <a href="/">Home</a>
-        <a href="/">About</a>
-        <a href="/">Contact</a>
-        <a href="/">Agents</a>
+        
         <a href="/">Sign In</a>
         <a href="/">Sign Up</a>
         

@@ -70,16 +70,29 @@
       }
     }
 
-    button{
-      border:none;
-      cursor: pointers;
-      background-color: #fece51;
+    a{
       flex:1;
+      display: flex;
+      background-color: #fece51;
+      align-items: center;
+      justify-content: center;
 
-      img{
-        width: 24px;
-        height: 24px;
+      button{
+        border:none;
+        cursor: pointer;
+        background-color: #fece51;
+
+        @include sm{
+          padding: 10px;
+        }
+        img{
+          width: 24px;
+          height: 24px;
+        }
       }
+      
+
+      
     }
   }
 
